@@ -2,10 +2,12 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
+from .models import Hackathons
 
 @login_required(login_url="mainapp:login")
 def home(request):
-    return render(request,'mainapp/home.html')
+    hackathons = Hackathons.objects.all()
+    return render(request,'mainapp/home.html',{'hackathons':hackathons})
 
 
 def register_view(request):

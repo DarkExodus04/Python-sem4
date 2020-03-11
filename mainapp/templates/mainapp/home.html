@@ -1,9 +1,9 @@
 {%extends 'mainapp/base.html'%}
 
 {%block content%}
-    {%for hackathon in hackathons %}
+    {%for c in cities %}
         <li>
-            <a href="{{hackathon.url}}">{{hackathon.title}}</a>
+            <a href="{{c.city}}">{{c.city}}</a>
         </li>
     {%endfor%}
 {%endblock%}

@@ -1,13 +1,14 @@
+
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .models import Hackathons
+from .models import Hackathons,Cities
 
-@login_required(login_url="mainapp:login")
+#@login_required(login_url="mainapp:login")
 def home(request):
-    hackathons = Hackathons.objects.all()
-    return render(request,'mainapp/home.html',{'hackathons':hackathons})
+    cities = Cities.objects.all()
+    return render(request,'mainapp/home.html',{'cities':cities})
 
 
 def register_view(request):
@@ -36,4 +37,8 @@ def logout_view(request):
     if request.method == 'POST':
         logout(request)
         return redirect("mainapp:home")
+
+def view_hack(request,city):
+    hackathons = Hackathons.objects.all()
+    return render(request, 'mainapp/hackathons.html', {'hackathons': hackathons, 'city': city})
 

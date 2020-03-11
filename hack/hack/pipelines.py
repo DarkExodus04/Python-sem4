@@ -4,7 +4,7 @@
 #
 # Don't forget to add your pipeline to the ITEM_PIPELINES setting
 # See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-from mainapp.models import Hackathons
+from mainapp.models import Hackathons,Cities
 
 class HackPipeline(object):
 
@@ -15,4 +15,8 @@ class HackPipeline(object):
         filteredurl = ''.join((filter(lambda x: x not in ['[', ']'], item["url"])))
         hackathons.url = filteredurl
         hackathons.save()
+        # city = Cities()
+        # filteredcity = ''.join((filter(lambda x: x not in ['[', ']'], item["city"])))
+        # city.city =filteredcity
+        # city.save()
         return item

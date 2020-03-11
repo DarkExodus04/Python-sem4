@@ -13,3 +13,5 @@ class HackItem(scrapy.Item):
     title = scrapy.Field()
     url = scrapy.Field()
 
+class CityItem(scrapy.Item):
+    city = scrapy.Field()

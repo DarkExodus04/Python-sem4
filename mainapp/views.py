@@ -4,9 +4,12 @@ from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Hackathons,Cities
+from .Scraper import Webhack
 
 #@login_required(login_url="mainapp:login")
 def home(request):
+    w = Webhack()
+    w.cities()
     cities = Cities.objects.all()
     return render(request,'mainapp/home.html',{'cities':cities})
 
@@ -39,6 +42,8 @@ def logout_view(request):
         return redirect("mainapp:home")
 
 def view_hack(request,city):
+    w = Webhack()
+    w.webhackathons(city)
     hackathons = Hackathons.objects.all()
     return render(request, 'mainapp/hackathons.html', {'hackathons': hackathons, 'city': city})
 

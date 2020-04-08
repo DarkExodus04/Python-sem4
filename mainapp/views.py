@@ -6,10 +6,11 @@ from django.contrib.auth.decorators import login_required
 from .models import Hackathons,Cities
 from .Scraper import Webhack
 
-#@login_required(login_url="mainapp:login")
+
+@login_required(login_url="mainapp:login")
 def home(request):
-    w = Webhack()
-    w.cities()
+    # w = Webhack()
+    # w.cities()
     cities = Cities.objects.all()
     return render(request,'mainapp/home.html',{'cities':cities})
 
@@ -37,13 +38,20 @@ def login_view(request):
     return render(request,"mainapp/login.html",{'form': form})
 
 def logout_view(request):
-    if request.method == 'POST':
+    if request.method == 'GET':
         logout(request)
         return redirect("mainapp:home")
 
 def view_hack(request,city):
-    w = Webhack()
-    w.webhackathons(city)
-    hackathons = Hackathons.objects.all()
+    cityview = Cities.objects.get(city = str(city))
+    hackathons = Hackathons.objects.filter(city_id = cityview.id)
     return render(request, 'mainapp/hackathons.html', {'hackathons': hackathons, 'city': city})
+
+def scrape(request):
+    w = Webhack()
+    # w.cities()
+    cities = Cities.objects.all()
+    for city in Cities:
+        w.webhackathons(city,city.id)
+    return render(request, "mainapp/home.html")
 

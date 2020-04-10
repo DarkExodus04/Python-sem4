@@ -1,5 +1,35 @@
 {%extends 'mainapp/base.html'%}
 
 {%block content%}
-<h1>Home page - Logged in</h1>
+
+<div class="w3-container">
+ <div class="w3-panel w3-pale-green w3-border-green w3-border w3-leftbar w3-animate-right">
+  <h1>Cities</h1>
+  <h3>Select a City to view its hackathons:</h3>
+ </div>
+        <input class="w3-input w3-border w3-padding w3-animate-opacity" type="text" placeholder="Search for names.." id="myInput" onkeyup="myFunction()">
+        <ul class="w3-ul w3-margin-top" id="myUL">
+{%for c in cities %}
+  <li class="w3-panel w3-hover-shadow w3-flat-midnight-blue
+ w3-center w3-round-large w3-padding-16 w3-animate-bottom " ><a href="{{c.city}}" >{{c.city}}</a></li>
+{%endfor%}
+</div>
+
+<script>
+function myFunction() {
+  var input, filter, ul, li, a, i;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  ul = document.getElementById("myUL");
+  li = ul.getElementsByTagName("li");
+  for (i = 0; i < li.length; i++) {
+    txtValue = li[i].textContent || li[i].innerText;
+    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      li[i].style.display = "";
+    } else {
+      li[i].style.display = "none";
+    }
+  }
+}
+</script>
 {%endblock%}

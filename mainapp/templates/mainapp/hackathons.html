@@ -1,0 +1,36 @@
+{%extends 'mainapp/base.html'%}
+
+{%block content%}
+    <h1>{{city}}</h1>
+    <div class="w3-container">
+    {%for hackathon in hackathons %}
+
+        <button onclick="myFunction('{{hackathon.title}}')" class="w3-btn w3-block w3-black w3-left-align">{{hackathon.title}}</button>
+        <div id="{{hackathon.title}}" class="w3-container w3-hide">
+            <div>
+          <h5>{{hackathon.start}}<br>
+              {{hackathon.end}}<br>
+              Type : {{hackathon.phase}}
+          </h5>
+            <a href = "{{hackathon.url}}"><h5>Register Here</h5></a>
+        </div>
+            </div>
+
+    {%endfor%}
+        </div>
+<hr />
+
+<h5>No Further Hackathons availaible</h5>
+
+<script>
+function myFunction(id) {
+  var x = document.getElementById(id);
+  if (x.className.indexOf("w3-show") == -1) {
+    x.className += " w3-show";
+  } else {
+    x.className = x.className.replace(" w3-show", "");
+  }
+}
+</script>
+
+{%endblock%}

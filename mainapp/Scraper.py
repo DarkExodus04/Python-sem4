@@ -1,6 +1,6 @@
 from bs4 import BeautifulSoup
 import requests
-from .models import Hackathons, Cities
+from mainapp.models import Hackathons, Cities
 
 
 class Webhack():
@@ -21,8 +21,9 @@ class Webhack():
 
 
     def webhackathons(self, city, cityid):
-        # Hackathons.objects.all().delete()
+        city = str(city)
         city1 = city.lower().split()
+        print(city, cityid)
         if len(city1) > 1:
             link = str(self.start_url) + str(city1[0]) +'-' + str(city1[1]) + '/'
         else:

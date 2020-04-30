@@ -3,8 +3,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth.decorators import login_required
-from .models import Hackathons,Cities
-from .Scraper import Webhack
+from mainapp.models import Hackathons,Cities
+from mainapp.Scraper import Webhack
 
 
 @login_required(login_url="mainapp:login")
@@ -50,8 +50,8 @@ def view_hack(request,city):
 def scrape(request):
     w = Webhack()
     # w.cities()
+    Hackathons.objects.all().delete()
     cities = Cities.objects.all()
-    for city in Cities:
+    for city in cities:
         w.webhackathons(city,city.id)
-    return render(request, "mainapp/home.html")
-
+    return redirect("mainapp:home", permanent= True)

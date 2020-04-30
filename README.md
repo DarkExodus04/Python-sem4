@@ -7,8 +7,8 @@ The site is called **Hackpy**. It Scrapes data from a site called **Hackerearth*
 
 Heres the packages required for the following required framework and libraries.
 
-> Django -`pip install django`
-> BeatifulSoup - `pip install beautifulsoup4`
+> Django -`pip install django`<br />
+> BeatifulSoup - `pip install beautifulsoup4`<br />
 > Django crispy forms - `pip install django-crispy-forms`
 
 

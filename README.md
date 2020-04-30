@@ -26,3 +26,6 @@ Heres the packages required for the following required framework and libraries.
  3. Register.
  4. Home page 
  5. Hackathon page showing Start,End date and Phase of the hackathon and a register link.
+ 
+ ## Remarks
+ Every City may contain same hackathon. This is because some hackathons are online and can be participated from everywhere in the world.
